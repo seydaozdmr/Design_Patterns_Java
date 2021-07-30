@@ -42,5 +42,22 @@ bilmek zorunda değildir ya da ne tür bir saldaye üretildiği önemli değildi
   aynı interface'e bağlı olarak `sitOn` methoduna sahiptir ve istemci hangi tür sandalye gelirse gelsin
   bu methodu sağlamış olur. Beraberinde gelen koltuk ve masa'da sandalye ile aynı takımı sahip olarak gelir.
   
-
+- Geriye açığa kavuşturmamız gereken tek bir konu kalıyor. istemci yalnızca abstract 
+interfaceleri kullanacaksa, somut factory nesneleri nerede yaratılıyor ya da hangi factory
+  nesnesi yaratılıyor. Uygulama böyle durumlarda hangi factory sınıfının yaratılacağını
+  config dosyalarında ya da çevresel (environment) ayarlarda belirler. Ve uygulamanın
+  ayağa kalkacağı noktada bunlar gerçekleştirilir.
+  
+### Uygulama
+- Aynı ürün grubu içinde bulunan soyut ürünler tanımlanır, örneğin sandalye,koltuk,masa.
+- Tanımlanan soyut interfacelerin somut implementasyonları gerçekleştirilir. Modern sandalye, avangart sandalye...
+- Abstract Factory interface soyut ürünlerin (bir nesne grubu olarak) yaratılmasını içeren metotlarla
+birlikte tasarlanır.
+  
+- Abstract Factory'den somut ürün grubunu yaratacak olan concrete factory sınıfları Abstract Factory i
+implemente eder. 
+  
+- Ürünleri yaratan somut factory sınıfları, ürünlerin somut hallerini yaratsalar bile geriye soyut olarak
+döndürürler. İstemci somut factory sınıfları ile, bu sınıflar kendi objeleri ile soyut interfaceler üzerinden
+  iletişim kurduğu sürece birlikte çalışabilir.
   
