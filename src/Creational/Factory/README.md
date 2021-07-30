@@ -120,3 +120,10 @@ methodu override ederek yaratılmasını beklediğimiz ürünün (sınıfın-nes
 - Eğer pek çok sınıf türü ve bu sınıfları yaratan pek çok creation sınıfı olduğu durumlarda, factory creation base
 sınıfındaki yaratıcı metodun kontrol parametresini bu alt sınıflara dağıtabilirsiniz. 
   
+### Artı Eksiler
++ Creator sınıfı ile somut nesneler arasında bağ zayıf olur.
++ Single Responsibility  Principle, Nesne yaratma işini bir yerden yönetebilriz.
++ Open/Close principle, Programımıza yeni tipler ekleyebiliriz, bu hali hazırdaki yapıyı
+bozmaz
+  
+- Yaratığımız kodlar zamanla karmaşık bir hale gelebilir. 
