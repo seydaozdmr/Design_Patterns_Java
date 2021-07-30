@@ -1,6 +1,7 @@
-## Design_Patterns_Java
+## Design Patterns Java
 
 ### Creational
+
 - Singleton
   - Eager
   - Lazy
@@ -8,3 +9,6 @@
   - Thread Safe Singleton
   - Static Block Singleton
   - Enum Singleton
+  
+- Factory Method
+  - asdasd
