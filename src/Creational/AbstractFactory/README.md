@@ -48,7 +48,7 @@ interfaceleri kullanacaksa, somut factory nesneleri nerede yaratılıyor ya da h
   config dosyalarında ya da çevresel (environment) ayarlarda belirler. Ve uygulamanın
   ayağa kalkacağı noktada bunlar gerçekleştirilir.
   
-### Uygulama
+### Uygulama Durumu
 - Aynı ürün grubu içinde bulunan soyut ürünler tanımlanır, örneğin sandalye,koltuk,masa.
 - Tanımlanan soyut interfacelerin somut implementasyonları gerçekleştirilir. Modern sandalye, avangart sandalye...
 - Abstract Factory interface soyut ürünlerin (bir nesne grubu olarak) yaratılmasını içeren metotlarla
@@ -60,4 +60,25 @@ implemente eder.
 - Ürünleri yaratan somut factory sınıfları, ürünlerin somut hallerini yaratsalar bile geriye soyut olarak
 döndürürler. İstemci somut factory sınıfları ile, bu sınıflar kendi objeleri ile soyut interfaceler üzerinden
   iletişim kurduğu sürece birlikte çalışabilir.
+  
+### Uygulanabilirlik
+- Abstract Factory kalıbını benzer durumda bulunan bir dizi sınıf nesnesini yaratmak zorunda
+olduğumuz zaman kullabiliriz. Fakat bu durum yaratmak istediğiniz nesnelerin somut örnekleri ile 
+  bağımlı olacak şekilde tasarlanmadığında geçerlidir. Yani bu nesnelerin yaratılma süreçleri
+  interfaceler üzerinden gerçekleştirileceklerdir. 
+  
+- Abstract Factory kalıbını elinizde birbirleri ile bağlantılı birden çok Factory Method 
+var ise kullanmayı düşünebilirsiniz.
+  
+### Artı Eksileri
++ Bir factory sınıfından elde ettiğimiz ürünleri bir birleri ile uyumlu olmasını garanti ederiz.
++ Somut ürün nesneleri ile istemciler arasında sıkı bağlar oluşmasının önüne geçeriz
++ Single Responsibility Principle -> Ürün yaratma sınıfının bir yerde olması, kodu daha desteklenebilir 
+hale getirir.
+  
++ Open -Closed Principle yeni türden ürün gruplarını genişletebiliriz ve hali hazırdaki kodlar üzerinden 
+değişiklik yapmayız ve kodlarımız kırılmaz.
+  
+- Kodlarımız olması gerekenden daha karmaşık hale gelebilir, çok fazla interface ve sınıf tanımlanabilir.
+
   
