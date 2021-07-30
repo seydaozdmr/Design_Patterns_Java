@@ -10,6 +10,7 @@ public class StaticBlockSingleton {
     }
     private StaticBlockSingleton() {
         name="Static block singleton -> "+count;
+        count++;
     }
 
     public static StaticBlockSingleton getInstance(){
