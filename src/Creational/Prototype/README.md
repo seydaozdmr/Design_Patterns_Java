@@ -77,7 +77,37 @@ alt sınıf yaratmayı engellemek için kullabilirsiniz. Bu durumlara ait nesnel
 - `clone` methoduna sahip bir prototype interface'i yaratın veya hali hazırda bulunan `Clonable` 
 interface'ini kullanın.
   
-- 
+- Prototype sınıfımızda aynı sınıftan bir argüman alan constructor tanımlanmalı. Bu constructor parametre
+olarak gelen bütün bilgileri sınıfın içindeki alanlara vermelidir. Eğer kullanacağınız dil buna izin vermezse
+  bu kopyalama işlemini özel bir method yardımıyla gerçekleştirebilirsiniz. 
+  
+- Klonlama işlemi yalnızca bu constructor'ın new lenmesi ile gerçekleştirilebilir. Not: `Clonable` interface'ini
+implemente eden sınıflar ve bundan türetilen alt sınıflar `clone` methodunu override etmek zorundadır. Aksi
+  halde `clone` methodu üst sınıfın kopyasını geri döndürür.
+  
+- Bunun dışında, sık kullanılacak prototype nesnelerinin kaydını merkezi bir sınıfta tutabilirsiniz ve gerektiğinde
+kopya oluşturarak kullanabilirsiniz. Bunu yeni bir sınıfta yapabileceğiniz gibi prototype'ı olasını istediğiniz
+  sınıf içerisinde static method olarak tanımlayabilirsiniz ve dışardan elde edebilirsiniz. 
+  
+
+  
+
 
   
 ### Artı Eksiler
+
++ Nesneleri somut sınıfa bağımlı olmadan kopyalayabilirsiniz.
++ Önceden klonlanmış nesneleri kullanarak yeni klonlar elde edebilirsiniz. Tekrardan initialize etmenize gerek
+yoktur.
+  
++ Karmaşık nesneleri daha düzgün bir şekilde üretebilirsiniz.
++ Nesnelerin durumlarına göre alt sınıf yaratmak yerine klonlamayı kullanarak farklı durumlara göre
+farklı klon nesnelerini prototype olarak çağırabiliriz.
+  
+- Dairesel referansa sahip nesneleri klonlamak karmaşık olabilir.
+
+### Diğer Tasarım Kalıpları İle İlişkisi
+
+- Prototype tasarım kalıbını Abstract Factory, Factory Method ile beraber kullanılabilir.
+
+
