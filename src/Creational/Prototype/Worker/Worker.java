@@ -1,4 +1,4 @@
-package Creational.Prototype;
+package Creational.Prototype.Worker;
 
 public class Worker implements Prototype{
     boolean partTime;
