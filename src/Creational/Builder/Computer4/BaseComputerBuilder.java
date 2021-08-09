@@ -4,5 +4,5 @@ public interface BaseComputerBuilder {
     BaseComputerBuilder buildCPU();
     BaseComputerBuilder buildRAM();
     BaseComputerBuilder buildHDD();
-    Computer buildBaseComputer();
+    Computer buildDisplay();
 }

@@ -1,6 +1,7 @@
 package Creational.Builder.Computer4;
 
 public class Computer {
+
     private static BaseComputerBuilderImpl baseComputerBuilder;
     private static ComputerDisplayBuilderImpl computerDisplayBuilder;
     private static AccessoryBuilderImpl accessoryBuilder;
@@ -14,44 +15,31 @@ public class Computer {
     private Mouse mouse;
 
     public Computer() {
+        System.out.println("empty computer");
     }
 
     public Computer(CPU cpu, RAM ram, HDD hardDisk) {
         this.cpu = cpu;
         this.ram = ram;
         this.hardDisk = hardDisk;
+        System.out.println("computer object");
     }
 
-    public Computer(CPU cpu, RAM ram, HDD hardDisk, GraphicCard graphicCard) {
-        this.cpu = cpu;
-        this.ram = ram;
-        this.hardDisk = hardDisk;
+    public Computer(Computer computer, GraphicCard graphicCard,Display display) {
+        this.cpu = computer.getCpu();
+        this.ram = computer.getRam();
+        this.hardDisk = computer.getHardDisk();
         this.graphicCard = graphicCard;
+        this.display=display;
     }
 
-    public Computer(CPU cpu, RAM ram, HDD hardDisk, GraphicCard graphicCard, Display display) {
-        this.cpu = cpu;
-        this.ram = ram;
-        this.hardDisk = hardDisk;
-        this.graphicCard = graphicCard;
-        this.display = display;
-    }
 
-    public Computer(CPU cpu, RAM ram, HDD hardDisk, GraphicCard graphicCard, Display display, Keyboard keyboard) {
-        this.cpu = cpu;
-        this.ram = ram;
-        this.hardDisk = hardDisk;
-        this.graphicCard = graphicCard;
-        this.display = display;
-        this.keyboard = keyboard;
-    }
-
-    public Computer(CPU cpu, RAM ram, HDD hardDisk, GraphicCard graphicCard, Display display, Keyboard keyboard, Mouse mouse) {
-        this.cpu = cpu;
-        this.ram = ram;
-        this.hardDisk = hardDisk;
-        this.graphicCard = graphicCard;
-        this.display = display;
+    public Computer(Computer computer, Keyboard keyboard, Mouse mouse) {
+        this.cpu = computer.getCpu();
+        this.ram = computer.getRam();
+        this.hardDisk = computer.getHardDisk();
+        this.graphicCard = computer.getGraphicCard();
+        this.display = computer.getDisplay();
         this.keyboard = keyboard;
         this.mouse = mouse;
     }
@@ -103,14 +91,14 @@ public class Computer {
     }
 
     private static class AccessoryBuilderImpl implements AccessoryBuilder{
-        private ComputerDisplayBuilder computerDisplayBuilder;
         private Keyboard keyboard;
         private Mouse mouse;
+        private Computer computer;
 
-        public AccessoryBuilderImpl(ComputerDisplayBuilder computerDisplayBuilder) {
-            this.computerDisplayBuilder = computerDisplayBuilder;
+        public AccessoryBuilderImpl(ComputerDisplayBuilderImpl computerDisplayBuilder) {
+            computer = computerDisplayBuilder.computer;
+            System.out.println("accessory computer created");
         }
-
 
         @Override
         public AccessoryBuilder buildKeyboard() {
@@ -126,17 +114,20 @@ public class Computer {
 
         @Override
         public Computer build() {
-            return null;
+            computer.keyboard=keyboard;
+            computer.mouse=mouse;
+            return computer;
         }
     }
 
     private static class ComputerDisplayBuilderImpl implements ComputerDisplayBuilder{
-        private BaseComputerBuilder baseComputerBuilder;
         private GraphicCard graphicCard;
         private Display display;
+        private Computer computer;
 
-        public ComputerDisplayBuilderImpl(BaseComputerBuilder baseComputerBuilder) {
-            this.baseComputerBuilder = baseComputerBuilder;
+        public ComputerDisplayBuilderImpl(BaseComputerBuilderImpl baseComputerBuilderImpl) {
+            computer=baseComputerBuilderImpl.computer;
+            System.out.println("display computer created");
         }
 
         @Override
@@ -152,9 +143,10 @@ public class Computer {
         }
 
         @Override
-        public Computer build() {
-
-            return ;
+        public Computer buildAccessory() {
+            computer.graphicCard=graphicCard;
+            computer.display=display;
+            return computer;
         }
     }
 
@@ -162,7 +154,11 @@ public class Computer {
         private CPU cpu;
         private RAM ram;
         private HDD hardDisk;
-        private Computer computer;
+        public Computer computer;
+
+        public BaseComputerBuilderImpl() {
+            System.out.println("base computer created");
+        }
 
         @Override
         public BaseComputerBuilder buildCPU() {
@@ -183,8 +179,8 @@ public class Computer {
         }
 
         @Override
-        public Computer buildBaseComputer() {
-            computer= new Computer(cpu,ram,hardDisk);
+        public Computer buildDisplay() {
+            computer=new Computer(cpu,ram,hardDisk);
             return computer;
         }
     }

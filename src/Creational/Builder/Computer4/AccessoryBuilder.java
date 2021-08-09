@@ -4,5 +4,4 @@ public interface AccessoryBuilder {
     AccessoryBuilder buildKeyboard();
     AccessoryBuilder buildMouse();
     Computer build();
-
 }
