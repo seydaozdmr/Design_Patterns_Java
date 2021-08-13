@@ -60,62 +60,44 @@ olmadığı, büyük ya da küçük harf olmasıdır.
 
 - Sonrasında oluşturulan nesneler farklı bağlamlarda tekrar tekrar kullanılabilir.
 
-- Bunu sağlamak için nesnenin dışsal durumu kullanılacak yere göre güncellenir. 
+- Bunu sağlamak için nesnenin dışsal durumu kullanılacak yere göre güncellenir.
 
+- Pek çok durumda dışsal durumu içeren nesneler ayrılarak context sınıfının içerisinde
+saklanabilir. 
   
+- Flyweight nesnelerinin içsel durumları immutable olmak zorundadır. Bir kere initialize edilmeli.
+
 ### Uygulanabilirlik
 
-- Prototype tasarım kalıbı ihtiyacınız olan nesnelerin yaratılması sürecinde sınıfa ve constructor
-a bağımlılığını ortadan kaldırır.
+- Flyweight nesnelere daha uygun bir şekile erişmek için factory method kullanabilirsiniz.
+Bu sayede pool içerisinden istediğiniz flyweight nesnesini çağırabilirsiniz. 
   
-- Bu durum başka bir uygulamadan interface aracılığı ile size geçilen nesnelerde oldukça fazla kullanılır.
-Bu somut nesneleri siz bilmezsiniz, aradaki bağımlılığınız ortadan kalkar.
+- Factory method istemciden içsel durumu ister, eğer pool içerisinde istenen flyweight 
+nesnesi varsa geri döndürür yoksa pool a yeni bir tane ekler ve bunu geri döner.
   
-- Prototype tasarım kalıbı klonlanması istenen her nesne için genel bir interface sağlar (`Clonable`).
-Bu arabirim istemci kodunu klonladığı somut nesne sınıflarından bağımsız hale getirir.
+- Flyweight kalıbını yalnızca uygulamanızın çok fazla nesne yaratması gereken ve RAM'in
+zorlandığı durumlarda kullanın.
   
-- Prototype tasarım kalıbını ilgili nesnelerin farklı constructor çağrılarının oluşturduğu durumlarda
-alt sınıf yaratmayı engellemek için kullabilirsiniz. Bu durumlara ait nesnelere oluşturulup kopyalarak
-  kullanılabilir.
-  
-- Prototype kalıbı yapılandırılmış nesneler oluşturulmasını sağlar.
+- Eğer uygulamanızdaki nesneler içerisinde paylaşılan durumlar varsa (tekrar eden)
+bu durumları farklı nesnelere ayırabilirsiniz.
 
 ### Uygulanması
 
-- `clone` methoduna sahip bir prototype interface'i yaratın veya hali hazırda bulunan `Clonable` 
-interface'ini kullanın.
-  
-- Prototype sınıfımızda aynı sınıftan bir argüman alan constructor tanımlanmalı. Bu constructor parametre
-olarak gelen bütün bilgileri sınıfın içindeki alanlara vermelidir. Eğer kullanacağınız dil buna izin vermezse
-  bu kopyalama işlemini özel bir method yardımıyla gerçekleştirebilirsiniz. 
-  
-- Klonlama işlemi yalnızca bu constructor'ın new lenmesi ile gerçekleştirilebilir. Not: `Clonable` interface'ini
-implemente eden sınıflar ve bundan türetilen alt sınıflar `clone` methodunu override etmek zorundadır. Aksi
-  halde `clone` methodu üst sınıfın kopyasını geri döndürür.
-  
-- Bunun dışında, sık kullanılacak prototype nesnelerinin kaydını merkezi bir sınıfta tutabilirsiniz ve gerektiğinde
-kopya oluşturarak kullanabilirsiniz. Bunu yeni bir sınıfta yapabileceğiniz gibi prototype'ı olasını istediğiniz
-  sınıf içerisinde static method olarak tanımlayabilirsiniz ve dışardan elde edebilirsiniz. 
-  
+- Nesnenizi içsel (tekrar eden) ve dışsal (benzersiz) olmak üzere iki parçaya ayırın.
 
+- Sınıfta içsel durumları immutable olacak şekide bırakın. Yalnızca nesne yaratılırken
+ilk değerleri verilecek şekilde.
   
+- Dışsal durumları kullanan methodlar yaratın. 
 
-
+- İsteğe bağlı olarak factory methodları yaratın. Pool kurarak flyweight nesneleri pool
+üzerinde toplayın ve dağıtın. 
   
 ### Artı Eksiler
 
-+ Nesneleri somut sınıfa bağımlı olmadan kopyalayabilirsiniz.
-+ Önceden klonlanmış nesneleri kullanarak yeni klonlar elde edebilirsiniz. Tekrardan initialize etmenize gerek
-yoktur.
++ Eğer benzer nesnelerden çok fazla yaratmak zorundaysanız, RAM'den kazanırsınız.
+
+- Eğer bağlam verileri sürekli güncelleniyorsa, CPU ve RAM arasında çok fazla bilgi
+akışı gerçekleşebilir.
   
-+ Karmaşık nesneleri daha düzgün bir şekilde üretebilirsiniz.
-+ Nesnelerin durumlarına göre alt sınıf yaratmak yerine klonlamayı kullanarak farklı durumlara göre
-farklı klon nesnelerini prototype olarak çağırabiliriz.
-  
-- Dairesel referansa sahip nesneleri klonlamak karmaşık olabilir.
-
-### Diğer Tasarım Kalıpları İle İlişkisi
-
-- Prototype tasarım kalıbını Abstract Factory, Factory Method ile beraber kullanılabilir.
-
-
+- Kod yapınızda karmaşıklık meydana gelebilir. 
