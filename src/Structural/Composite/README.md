@@ -67,3 +67,14 @@ bir nesne yapısı uygulamanız gerektiğinde Composite kalıbını kullanabilir
 - Bileşik nesnelerdeki methodların özyinelemeli (recursive) olması gerekebilir.
 
 - Sisteme yeni parçalar eklemek kolaydır. 
+
+### Uygulama Durumu
+
+- `Decorator` kalıbını nesneye ekstra yetkinlikler kazandırmak (run time'da) istediğinizde 
+kullabilirsini (kodu değiştirmeden).
+  
+- Eğer nesne genişletme durumu çok zorsa ve ya mümkün değilse bu kalıbı kullanın.
+
+- Bazı programlama dilleri final keyword'ü ile nesne mirasını yasaklamıştır. Bu durumda olan
+sınıflar için decorator kalıbını kullanabilirsiniz.
+  
