@@ -7,5 +7,9 @@ public class AirConditioner {
         this.temperature = temperature;
     }
 
+    public void setTemperature(Temperature temperature){
+        this.temperature=temperature;
+    }
+
 
 }

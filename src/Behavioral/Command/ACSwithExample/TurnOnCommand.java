@@ -9,6 +9,7 @@ public class TurnOnCommand implements Command{
 
     @Override
     public void execute(Temperature temperature) {
+        airConditioner.setTemperature(temperature);
     }
 
     @Override
