@@ -1,0 +1,32 @@
+package Behavioral.Memento.Example;
+
+public class Originator {
+    //Durumu tutulacak bilgi:
+    private volatile String state;
+    private Memento memento=new Memento();
+
+    public Originator(String state) {
+        this.state = state;
+        memento.setOriginator(this);
+    }
+
+    public String getState(){
+        return state;
+    }
+
+    public synchronized void setState(String state){
+        System.out.println("new state: "+state);
+        this.state=state;
+    }
+
+    public Memento getMemento(){
+        return memento;
+    }
+
+    @Override
+    public String toString() {
+        return "Originator{" +
+                "state='" + state + '\'' +
+                '}';
+    }
+}
