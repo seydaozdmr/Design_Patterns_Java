@@ -19,6 +19,11 @@ public class Customer extends Thread implements CustomerInterface{
 
     @Override
     public void proceed() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("Customer " + getName() + " is proceeding through employee " + employee.getName());
         bankMediator.done(this);
     }
@@ -40,17 +45,16 @@ public class Customer extends Thread implements CustomerInterface{
         bankMediator.askPermitToService(this);
     }
 
-    public void run()   {
-
-
-
+    public void run() {
+        System.out.println("Customer "+getName()+ " is asking permit to service ");
         bankMediator.askPermitToService(this);
-        System.out.println("Customer "+getName()+ " is asking permit to service "+ employee.getName());
+
         try {
-            Thread.sleep(1000);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 
     public Employee getEmployee() {

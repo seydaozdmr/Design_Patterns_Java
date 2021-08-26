@@ -24,9 +24,16 @@ public class BankMediatorImpl implements BankMediator{
     @Override
     public void askPermitToService(Customer customer) {
         Employee employee=getEmployee();
+
         if(employee!=null){
             customer.setEmployee(employee);
-            customer.proceed();
+            try {
+                Thread.sleep(500);
+                customer.proceed();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         }else{
             customer.waitForAWhile();
         }
