@@ -1,4 +1,4 @@
-package Structural.Flywight.FlyweightExample;
+package Structural.Flyweight.FlyweightExample;
 
 public class Context {
     private String color;
