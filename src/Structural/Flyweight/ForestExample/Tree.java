@@ -1,4 +1,4 @@
-package Structural.Flywight.ForestExample;
+package Structural.Flyweight.ForestExample;
 
 public class Tree {
     private int x;

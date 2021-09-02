@@ -1,4 +1,4 @@
-package Structural.Flywight.ForestExample;
+package Structural.Flyweight.ForestExample;
 
 import java.awt.*;
 import java.util.Objects;
