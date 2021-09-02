@@ -1,4 +1,4 @@
-package Structural.Flywight.Book;
+package Structural.Flyweight.Book;
 
 public class Character {
     //Intrinsic Properties

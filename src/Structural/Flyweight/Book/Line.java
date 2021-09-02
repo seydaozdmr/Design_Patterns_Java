@@ -1,4 +1,4 @@
-package Structural.Flywight.Book;
+package Structural.Flyweight.Book;
 
 import java.util.ArrayList;
 import java.util.List;
