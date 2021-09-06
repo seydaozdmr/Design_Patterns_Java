@@ -1,6 +1,6 @@
 ## Design Patterns Java
 
-  Tasarım Kalıpları yazılım inşa etme süreçlerinde karşılaşın problemlere yönelik
+ `Tasarım Kalıpları` yazılım inşa etme süreçlerinde karşılaşın problemlere yönelik
 çözümlerin ortaya konulduğu yapılardır. Böylece benzer problemlere yönelik olarak 
 aynı tasarım örüntüleri tekrar tekrar kullanılabilir ya da geliştirilebilir.
 
