@@ -5,6 +5,7 @@ public enum SingletonEnum {
 
     private String name;
     private int count;
+
     private SingletonEnum(){
         System.out.println("in singletonEnum");
         name="enum ->"+ count;
