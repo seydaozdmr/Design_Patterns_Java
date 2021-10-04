@@ -8,6 +8,7 @@ public class Test {
         while(iterator.hasNext()){
             System.out.println(iterator.next().getValue());
         }
+
     }
 
     private static TreeNode<Integer> buildIntegerBst(){
